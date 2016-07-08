@@ -9,6 +9,8 @@ public class MenuController : MonoBehaviour {
 
     public float currentTime;
 
+    public Button creditsButton;
+
 	// Use this for initialization
 	void Start () {
         currentTime = PlayerPrefs.GetFloat("Current Time");

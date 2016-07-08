@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
+    // Projectile floats
     public float moveSpeed = 500.0f;
     public float lifeTime = 3.0f;
 
     GameManager gameManager;
-
     UIManager UI;
 
     // Use this for initialization
@@ -21,15 +21,15 @@ public class Projectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         Movement();
     }
 
     public void Movement()
     {
-        transform.position += transform.right * moveSpeed * Time.deltaTime;
+        transform.position += transform.right * moveSpeed * Time.deltaTime; // Moves the projectile upon instantiation
     }
 
+    // Destroys enemies and projectile upon trigger enter
     void OnTriggerEnter(Collider otherObject)
     {
         if (otherObject.tag == "Enemy")

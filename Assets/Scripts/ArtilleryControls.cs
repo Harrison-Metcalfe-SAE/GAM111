@@ -3,33 +3,31 @@ using System.Collections;
 
 public class ArtilleryControls : MonoBehaviour{
 
-    public float rotationSpeed = 10.0f;
-
+    // Cannon Specifications
     public GameObject launcher;
-
-    public float damage = 100.0f;
 
     // Cannon Controls
     public GameObject muzzle;
     public GameObject cannonBall;
+    public float rotationSpeed = 10.0f;
 
+    // Score tracking systems
     public GameObject UI;
     public float currentTime;
     public float bestTime;
-
     public float currentScore;
     public float bestScore;
 
     // Use this for initialization
     void Start()
     {
-        bestScore = PlayerPrefs.GetFloat("Best Score");
+        bestScore = PlayerPrefs.GetFloat("Best Score"); // Aquires the best score stored in playerprefs
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // Takes the current in game time and score from the UIManager
         currentTime = UI.GetComponent<UIManager>().timer;
         currentScore = UI.GetComponent<UIManager>().score;
 
@@ -64,18 +62,23 @@ public class ArtilleryControls : MonoBehaviour{
         }
     }
 
+    // Lose Condition
     void OnTriggerEnter(Collider otherObject)
     {
         if (otherObject.tag == "Enemy")
         {
             Application.LoadLevel("lose");
-            PlayerPrefs.SetFloat("Current Time", currentTime);
-            PlayerPrefs.SetFloat("Current Score", currentScore);
-            if (currentTime <= bestTime)
+            PlayerPrefs.SetFloat("Current Time", currentTime); // Sets the player pref current time for use in the lose screen
+            PlayerPrefs.SetFloat("Current Score", currentScore); // Sets the player pref current score for use in the lose screen
+
+            // If the player's current time is better than the record, replace the record in player prefs
+            if (currentTime <= bestTime) 
             {
                 bestTime = currentTime;
                 PlayerPrefs.SetFloat("Best Time", bestTime);
             }
+
+            // If the player's current score is better than the record, replace the record in player prefs
             if (currentScore >= bestScore)
             {
                 bestScore = currentScore;

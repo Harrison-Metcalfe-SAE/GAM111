@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour {
 	void Start () {
 	}
 
+    // Start the game
     public void ButtonStart(){
         Application.LoadLevel("artillery");
     }

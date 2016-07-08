@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    // Navigation variables
     private NavMeshAgent agent;
-
     public GameObject target;
-
     GameObject player;
 
+    /*
     public float playerDamage;
-
     public float enemyHealth = 100.0f;
+    */
 
     // State Machine Enumerator 
     public enum EnemyState
@@ -32,8 +32,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 
-
         EnemyLogic();
 
         EnemyBehaviour();

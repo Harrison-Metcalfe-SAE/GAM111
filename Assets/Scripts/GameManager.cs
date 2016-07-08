@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 		Pause ();
 	}
 
+    // TODO Add an on screen indicator that the game is paused
 	void Pause(){
         if (Input.GetKey("p"))
         {
