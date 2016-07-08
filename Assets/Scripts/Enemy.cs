@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
         EnemyBehaviour();
     }
-
+    // Taken from the inclass work (Survival FPS) and left mostly unchanged
     // Logical Transition Block
     void EnemyLogic()
     {

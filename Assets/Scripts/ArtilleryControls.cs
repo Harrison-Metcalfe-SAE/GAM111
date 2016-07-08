@@ -13,15 +13,25 @@ public class ArtilleryControls : MonoBehaviour{
     public GameObject muzzle;
     public GameObject cannonBall;
 
+    public GameObject UI;
+    public float currentTime;
+    public float bestTime;
+
+    public float currentScore;
+    public float bestScore;
+
     // Use this for initialization
     void Start()
     {
-
+        bestScore = PlayerPrefs.GetFloat("Best Score");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        currentTime = UI.GetComponent<UIManager>().timer;
+        currentScore = UI.GetComponent<UIManager>().score;
 
         //Up and Down Rotation
         if (Input.GetKey("w"))
@@ -51,6 +61,26 @@ public class ArtilleryControls : MonoBehaviour{
     {
         if (Input.GetKeyDown("space")){
             Instantiate(cannonBall, muzzle.transform.position, muzzle.transform.rotation);
+        }
+    }
+
+    void OnTriggerEnter(Collider otherObject)
+    {
+        if (otherObject.tag == "Enemy")
+        {
+            Application.LoadLevel("lose");
+            PlayerPrefs.SetFloat("Current Time", currentTime);
+            PlayerPrefs.SetFloat("Current Score", currentScore);
+            if (currentTime <= bestTime)
+            {
+                bestTime = currentTime;
+                PlayerPrefs.SetFloat("Best Time", bestTime);
+            }
+            if (currentScore >= bestScore)
+            {
+                bestScore = currentScore;
+                PlayerPrefs.SetFloat("Best Score", bestScore);
+            }
         }
     }
 }

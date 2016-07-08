@@ -26,7 +26,8 @@ public class EnemySpawner : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-                if (roundRequirement == round)
+        round = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>().round;
+        if (roundRequirement <= round)
                 {
                     if (Time.time > spawnTime)
                     {

@@ -8,10 +8,13 @@ public class Projectile : MonoBehaviour {
 
     GameManager gameManager;
 
+    UIManager UI;
+
     // Use this for initialization
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        UI = GameObject.FindGameObjectWithTag("UI").GetComponent<UIManager>();
         Destroy(this.gameObject, lifeTime);
     }
 
@@ -31,6 +34,7 @@ public class Projectile : MonoBehaviour {
     {
         if (otherObject.tag == "Enemy")
         {
+            UI.score += 1 * UI.round;
             Destroy(otherObject.gameObject);
             Destroy(this.gameObject);
             gameManager.enemiesKilled++;

@@ -7,10 +7,12 @@ public class MenuController : MonoBehaviour {
 
     public Button startButton;
 
+    public float currentTime;
+
 	// Use this for initialization
 	void Start () {
-	
-	}
+        currentTime = PlayerPrefs.GetFloat("Current Time");
+    }
 	
 	// Update is called once per frame
 	void Update () {

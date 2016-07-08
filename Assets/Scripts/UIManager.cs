@@ -14,7 +14,11 @@ public class UIManager : MonoBehaviour{
 
     public Text timeRemaining;
 
-    public float timer = 500;
+    public float timer = 300;
+
+    public float score;
+
+    public Text currentScore;
 
     // Use this for initialization
     void Start()
@@ -27,8 +31,10 @@ public class UIManager : MonoBehaviour{
     {
         timer -= Time.deltaTime;
         ChangeRound();
+        winState();
+        currentScore.text = ("Score: " + score);
         currentRound.text = ("Round:" + round);
-        enemiesDefeated.text = ("Enemies Dispatched: " + gameManager.enemiesKilled);
+        enemiesDefeated.text = ("Enemies Until Next Round: " + gameManager.enemiesKilled + "/5");
         timeRemaining.text = ("Time Remaining: " + Mathf.Round(timer));
     }
 
@@ -39,6 +45,14 @@ public class UIManager : MonoBehaviour{
             Debug.Log("Is it working?");
             round ++;
             gameManager.enemiesKilled -= 5;
+        }
+    }
+
+    void winState()
+    {
+        if(timer <= 0)
+        {
+            Application.LoadLevel("win");
         }
     }
 }
